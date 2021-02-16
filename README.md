@@ -7,4 +7,4 @@ along with this the encoded message and code seems very random to the naked eye 
 
 Anybody can suggest or even modify it just let me know if you plan on doing it and share your own version with me, I'd love to see what else other people can think of
 
-RCCG-V2 12/02/2021 Created by; Artus aka. AlmondMan. Contact: almondman@trollclan.com Website: https://almondman.trollclan.com/
+RCCG-V2 12/02/2021 Created by; Artus aka. AlmondMan. Contact: almondman@trollclan.com Website: https://almondman.trollclan.com/coding-projects/rccg
