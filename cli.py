@@ -82,8 +82,4 @@ while invalid:
                     print("Decoded message: " + RCCG.decode(msg))
 
 
-        input("press any key to finish: ")
-
-
-
-        
+        input("press any key to finish: ")        
