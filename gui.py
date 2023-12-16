@@ -50,20 +50,20 @@ def clear():
    textboxOut.delete("1.0", END)
 
 
-# def open_popup():
+def open_popup():
 
-#   popup = Toplevel(root)
-#   popup.title("Release Information")
-#   popup.geometry('500x75')
-#   popup.wm_attributes('-topmost', True)
+  popup = Toplevel(root)
+  popup.title("Release Information")
+  popup.geometry('500x75')
+  popup.wm_attributes('-topmost', True)
 
-#   label = tk.Label(popup, text = "This is an alpha build, functions may not work as intended.")
-#   label.pack()
+  label = tk.Label(popup, text = "This is an alpha build, functions may not work as intended.")
+  label.pack()
 
-#   kill = tk.Button(popup, text = "Ok")
-#   kill.pack()
-#   kill.config(width = 10, height = 2)
-#   kill.bind("<Button-1>", lambda event: popup.destroy())
+  kill = tk.Button(popup, text = "Ok")
+  kill.pack()
+  kill.config(width = 10, height = 2)
+  kill.bind("<Button-1>", lambda event: popup.destroy())
 
 
 

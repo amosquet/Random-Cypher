@@ -1,0 +1,33 @@
+To implement RCCG into any program you only need two things, import RCCg and use encode and decode.
+
+If you don't know how to import do:
+    import RCCG
+Do this at the top of your script or any place before calling the encode or decode functions.
+
+To encode messages:
+    RCCG.encode()
+
+To decode messages:
+    RCCG.decode()
+
+
+Encode Example:
+
+    message = "Hello World"
+
+    encoded = RCCG.encode(message)
+
+    print(encoded)
+
+The above will encode whatever text the message variable is set to and then print the output.
+
+Decode Example:
+
+    message = "0100100001100101011011000110110001101111001000000101011101101111011100100110110001100100"
+
+    decoded = RCCG.decode(message)
+
+    print(decoded)
+
+The above will decode whatever input the message variable is set to and then print the output.
+NOTE: the example text for the message variable is not representative of what the encoded messages look like.
