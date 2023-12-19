@@ -3,13 +3,17 @@ import tkinter as tk
 from tkinter import filedialog
 
 
+#fuck comments
+
+#create a variable to know status of input
 invalid = True
 
+#input validation for encoding or decoding, prompting input gain if the user input is invalid
 while invalid:
 
-    mode = input("Would you like to ENCODE or DECODE? ")
+    mode = input("Would you like to ENCODE or DECODE? ") #printing/asking if the user wants to encode or decode text
 
-    if not mode in ['encode', 'ENCODE', 'e', 'E', 'Encode', 'decode', 'DECODE', 'd', 'D', 'Decode']:
+    if not mode in ['encode', 'ENCODE', 'e', 'E', 'Encode', 'decode', 'DECODE', 'd', 'D', 'Decode']: #if the input doesn't match any valid option then we reprompt
         
         print('Invalid input')
 
@@ -82,4 +86,5 @@ while invalid:
                     print("Decoded message: " + RCCG.decode(msg))
 
 
-        input("press any key to finish: ")        
+        input("press any key to finish: ") #used to kill the process only when the user wants it to end instead of it automatically stopping
+                                            #once the output has been printed   
