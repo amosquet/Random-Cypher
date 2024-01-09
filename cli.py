@@ -18,7 +18,7 @@ while invalid:
         print('Invalid input')
 
     else:
-
+        #if encode is true then the "invalid" variable get changed to False, text input is requested, and RCCG is called to encode the text
         if mode in ['encode', 'ENCODE', 'e', 'E', 'Encode']:
             invalid = False
             q = True
@@ -32,7 +32,7 @@ while invalid:
 
 
             while q:
-
+                #input validation for saving to a text file
                 file = input("Would you like to save to a file? y/n: ")
                 
                 if not file in ['y', 'n']:
@@ -41,7 +41,7 @@ while invalid:
                 if file == 'y':
                     q = False
 
-
+                    #saving to text file
                     with open('RCCG-output.txt', 'w') as f:
                         f.write(encoded)
                         print("saved to 'RCCG-output.txt'")
@@ -50,14 +50,14 @@ while invalid:
                     q = False
             
 
-
+        #if encode is true then the "invalid" variable get changed to False, text input is requested, and RCCG is called to encode the text
         elif mode in ['decode', 'DECODE', 'd', 'D', 'Decode']:
             invalid = False
             q = True
 
 
             while q:
-
+                #asking the user if they would like to import encoded text from a text file or if they want to manualy type or paste it in
                 file = input("Would you like to decode from file or paste the encoded message? (f)ile/(p)aste? ")
 
                 if not file in ['f', 'p']:
@@ -67,23 +67,24 @@ while invalid:
                 if file == "f":
                     q = False
                     
+                    #create a file dialogue box for the user to import a a text file
                     root = tk.Tk()
                     root.withdraw()
 
-                    filename = filedialog.askopenfilename(parent=root,title='Open file to encrypt')
-                    contents = open(filename, 'r').read()
+                    filename = filedialog.askopenfilename(parent=root,title='Open file to encrypt') #opening the text file
+                    contents = open(filename, 'r').read() #storing the contents of the text file
 
-                    msg = contents
+                    msg = contents #storing the contents of the text file to the "msg" variable
 
-                    print("Decoded message: " + RCCG.decode(msg))
+                    print("Decoded message: " + RCCG.decode(msg)) #dedcoding and printing the decrypted text
                     
-
+                #used only if manual importing, through typing or pasting, is selected
                 elif file == 'p':
                     q = False
 
                     msg = input("Coded Message: ")
 
-                    print("Decoded message: " + RCCG.decode(msg))
+                    print("Decoded message: " + RCCG.decode(msg)) #dedcoding and printing the decrypted text
 
 
         input("press any key to finish: ") #used to kill the process only when the user wants it to end instead of it automatically stopping
