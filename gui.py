@@ -55,6 +55,7 @@ def clear():
    textboxOut.delete("1.0", END)
 
 
+
 #create popup window as a child of the main (or root) window to warn that the current build is an alpha 
 def open_popup():
 
@@ -63,8 +64,14 @@ def open_popup():
   popup.geometry('500x75')
   popup.wm_attributes('-topmost', True)
 
-  label = tk.Label(popup, text = "This is an alpha build, functions may not work as intended.") #create text box with text about aplha status
+  label = tk.Label(popup, text = "This is an alpha build, functions may not work as intended.")
   label.pack()
+
+  kill = tk.Button(popup, text = "Ok")
+  kill.pack()
+  kill.config(width = 10, height = 2)
+  kill.bind("<Button-1>", lambda event: popup.destroy())
+
 
   kill = tk.Button(popup, text = "Ok") #create a "kill" button that reads "Ok"  to kill the popup window
   kill.pack()
