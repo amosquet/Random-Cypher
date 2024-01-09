@@ -1,8 +1,5 @@
-#This is version 4A of the RCCG(Random Ceasar Cypher Generator). Meant to simplify the creation of "encrypted" messages allong with decoding them.
-#Completely overhaulled ceasar shift and binary converstion! After 4 years this program can finally handle spaces in text, LFG!
-
-#THIS SCRIPT IS NOT TO BE SHARED AND IS AN ALPHA BUILD NOT MEANT FOR PUBLIC RELEASE
-#This is a modified script made for GUI use
+#This is RCCG(Random Ceasar Cypher Generator). Meant to simplify the creation of "encrypted" messages allong with decoding them.
+#This is script is meant to be imported and called to for ecrypting text. Check "HTI.txt" for instructions on how to implement this script into other programs.
 
 alphabet = "abcdefghijklmnopqrstuvwxyz"
 
@@ -37,11 +34,11 @@ def caesar_shift_decrypt(text, amount):
     shifted_text = caesar_shift(text, -amount)
     return shifted_text
 
-
+#converting the roman letters into binary, 1's and 0's
 def words_to_binary(sentence):
     return ''.join([f'{ord(letter):08b}' for letter in sentence])
 
-
+#converting binary 1's and 0's into roman letters
 def binary_to_words(binary):
     characters = [binary[i:i+8] for i in range(0, len(binary), 8)]
     sentence = ''
@@ -53,14 +50,12 @@ def binary_to_words(binary):
 
 ### MAIN PROGRAM/ENCRYPTION MODES ###
 
+#start of encoding
 def encode(msg):
 
     import random
-	#cyph = random.randint(3,23)#randomly choosing the shift amount, between 3 and 23 shifts
-	#cyhps = range(3,23) + range(27,50)
-    # cyhp = range(3,23) + range(27,35)
-    # cyph = random.randint(27,35)
 
+    #randomly choosing a shift amount between 3 to 23, and 27 to 35
     from random import randint, choice
     for _ in range(5):
         r = choice([(3,23),(27,35)])
@@ -120,6 +115,7 @@ def encode(msg):
     return(a+"803530469412604911808100016627350902841903252146334827830598824925070206392756473556897071488234491921035262827731623431560143636674392911547862129480499413206061773770"+str_o[::-1]+"461727898511311493781391003693170643095981910343837368617180798950478072212496727634555268790775278503009288235497443181814221294871722010234444103771486479025802027848"+b)#returning the encoded message with the re-mapped shift code
 
 
+#start of encoding
 def decode(msg):
 
 
