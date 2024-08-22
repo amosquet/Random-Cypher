@@ -12,7 +12,7 @@ def encode():
     
     inp = textboxIn.get(1.0, "end-1c")
 
-    contents = RCCG.encode(inp)
+    contents = RCCG.encode(inp) #call the endcoding function
     
     textboxOut.insert("1.0", contents)
 
@@ -23,8 +23,9 @@ def decode():
 
 
     inp = textboxIn.get(1.0, "end-1c")
-
-    contents = RCCG.decode(inp)
+    inp = inp.strip()
+    
+    contents = RCCG.decode(inp) #call the decoding function
    
     textboxOut.insert("1.0", contents)
 
@@ -66,12 +67,6 @@ def open_popup():
 
   label = tk.Label(popup, text = "This is an alpha build, functions may not work as intended.")
   label.pack()
-
-  kill = tk.Button(popup, text = "Ok")
-  kill.pack()
-  kill.config(width = 10, height = 2)
-  kill.bind("<Button-1>", lambda event: popup.destroy())
-
 
   kill = tk.Button(popup, text = "Ok") #create a "kill" button that reads "Ok"  to kill the popup window
   kill.pack()
