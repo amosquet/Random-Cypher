@@ -1,5 +1,8 @@
-#This is RCCG(Random Ceasar Cypher Generator). Meant to simplify the creation of "encrypted" messages allong with decoding them.
-#This is script is meant to be imported and called to for ecrypting text. Check "HTI.txt" for instructions on how to implement this script into other programs.
+#This is version 4A of the RCCG(Random Ceasar Cypher Generator). Meant to simplify the creation of "encrypted" messages allong with decoding them.
+#Completely overhaulled ceasar shift and binary converstion! After 4 years this program can finally handle spaces in text, LFG!
+
+#THIS SCRIPT IS NOT TO BE SHARED AND IS AN ALPHA BUILD NOT MEANT FOR PUBLIC RELEASE
+#This is a modified script made for GUI use
 
 alphabet = "abcdefghijklmnopqrstuvwxyz"
 
@@ -85,8 +88,6 @@ cyph_dict = {
 
 #start of encoding
 def encode(msg):
-
-    import random
 
     #randomly choosing a shift amount between 3 to 23, and 27 to 35
     from random import randint, choice
