@@ -101,28 +101,28 @@ def encode(msg):
     bini = words_to_binary(code)#converting string to binary
     rev = bini#reversing the binary string ex; 1101 -> 1011
 
-#turning the binary code, 1's and 0's, into different numbers, ex; 0 -> 8 and 10 -> 6
+    #turning the binary code, 1's and 0's, into different numbers, ex; 0 -> 8 and 10 -> 6
     str_oz = rev.replace('10', '6')
     str_zo = str_oz.replace('01', '3')
     str_z = str_zo.replace('0', '8')
     str_o = str_z.replace('1', '5')
 
-
-
+    #obfuscating shift key using cyph dictionary
     hex = (cyph_dict[str(cyph)])#naming the dict output
-    a, b = hex .split("|")
+    a, b = hex .split("|") #taking the obfuscated shift key and splitting it.
 
-
+    #returning encrypted text with shift key
     return(a+"803530469412604911808100016627350902841903252146334827830598824925070206392756473556897071488234491921035262827731623431560143636674392911547862129480499413206061773770"+str_o[::-1]+"461727898511311493781391003693170643095981910343837368617180798950478072212496727634555268790775278503009288235497443181814221294871722010234444103771486479025802027848"+b)#returning the encoded message with the re-mapped shift code
 
 
 #start of encoding
 def decode(msg):
 
+    #taking input 'msg' and splitting it at the split codes
     a, b = msg .split("803530469412604911808100016627350902841903252146334827830598824925070206392756473556897071488234491921035262827731623431560143636674392911547862129480499413206061773770")#one line input for both the code and shift ammount
     x, c = b .split("461727898511311493781391003693170643095981910343837368617180798950478072212496727634555268790775278503009288235497443181814221294871722010234444103771486479025802027848")#x is the actual message, c is the 2nd part of the shift code
 
-    #transforming y(hex) from string to integer
+    #converting the obfuscated shift code back into its corresponding shift amount and ensuring that it is an integer
     h = next(key for key, value in cyph_dict.items() if value == a+'|'+c)
     int_h = int(h)
 
@@ -134,13 +134,11 @@ def decode(msg):
     str_zo = str_z.replace('3', '01')
     str_oz = str_zo.replace('6', '10')
 
-
-    str_data = binary_to_words(str_oz)
-	
-
+    str_data = binary_to_words(str_oz) #converting binary back into text
     decode = caesar_shift_decrypt(str_data,int_h)#shifting the alphabet back into their original position
 	
-    return(decode)#returning the original message
+    #returning the original message
+    return(decode) 
 
 
 
