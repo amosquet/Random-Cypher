@@ -1,0 +1,51 @@
+name: Compile Python to Executable
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Build CLI executable for Linux
+        run: pyinstaller --onefile cli.py
+      - name: Build GUI executable for Linux
+        run: pyinstaller --onefile gui.py
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Build CLI executable for Windows
+        run: pyinstaller --onefile cli.py
+      - name: Build GUI executable for Windows
+        run: pyinstaller --onefile gui.py
+
+  build-macos-latest:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Build CLI executable for macOS
+        run: pyinstaller --onefile cli.py
+      - name: Build GUI executable for macOS
+        run: pyinstaller --onefile gui.py
+
+  build-macos-13:
+    runs-on: macos-13
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Build CLI executable for macOS 13
+        run: pyinstaller --onefile cli.py
+      - name: Build GUI executable for macOS 13
+        run: pyinstaller --onefile gui.py
