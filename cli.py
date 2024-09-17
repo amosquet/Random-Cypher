@@ -1,9 +1,38 @@
 import RCCG
+import updater
+import yaml
 import tkinter as tk
 from tkinter import filedialog
 
 
 #fuck comments
+
+#import owner, repo, RCCG, and CLI from config.yaml
+def load_config(file_path):
+    with open(file_path, 'r') as file:
+        return yaml.safe_load(file)
+
+config = load_config('config.yaml')
+repow = config['owner']+'/'+config['repo']
+Vrccg = config['RCCG']
+Vcli = config ['CLI']
+
+rc_check = updater.check(Vrccg, repow) #false = latest version
+cli_check = updater.check(Vcli, repow)
+
+config['RCCG_status'] = rc_check
+config['CLI_status'] = cli_check
+
+
+print(rc_check)
+print(cli_check)
+
+# with open('config.yaml', 'w') as file:
+#     yaml.safe_dump(config, file)
+#     print('save complete')
+
+
+
 
 #create a variable to know status of input
 invalid = True
