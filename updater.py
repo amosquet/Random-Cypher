@@ -4,6 +4,7 @@ import requests
 import subprocess
 import os
 import shutil
+import yaml
 
 #get the current directory of the program
 def directory():
@@ -43,9 +44,44 @@ def cleanup(file, update_folder):
     dir = directory() #get the current directory of the program
     shutil.move(update_folder+"/"+file, dir) #move the updated program, file, from the temporary directory to the original directory
 
-    shutil.rmtree(update_folder, ignore_errors=True) #delete the temporary directory
+   # shutil.rmtree(update_folder, ignore_errors=True) #delete the temporary directory
 
     #restart the program
     # os.system("python3 "+file) #for python files
     #run executable file
-    os.system(file) #for executable files
+   # os.system(file) #for executable files
+
+def load_config(file_path):
+        with open(file_path, 'r') as file:
+            return yaml.safe_load(file)
+
+def main(args):
+    load_config('config.yaml')
+    repow = config['owner']+'/'+config['repo']
+    ufolder = config['update_folder']
+
+    rc_check = args[0]
+    cli_check = args[1]
+    gui_check = args[3]
+    f1 = 'RCCG.py'
+    f2 = 'cli.py'
+    f3 = 'gui.py'
+
+    creat_dir(ufolder)
+    clone(repow, ufolder)
+
+    if rc_check == True:
+        print("Updating "+f1)
+        cleanup(f1, ufolder)
+    if clu_check == True:
+        print("Updating "+f2)
+        cleanup(f1, ufolder)
+    if gui_check == True:
+        print("Updating "+f3)
+        cleanup(f3, ufolder)
+
+    shutil.rmtree(ufolder, ingore_error=True)
+    subprocess.run('python3', 'cli.py')
+
+if __name__== "__main__":
+    man(sys.argv[1:])

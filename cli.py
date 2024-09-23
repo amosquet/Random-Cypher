@@ -3,7 +3,7 @@ import updater
 import yaml
 import tkinter as tk
 from tkinter import filedialog
-
+import subprocess
 
 #fuck comments
 
@@ -23,6 +23,9 @@ cli_check = updater.check(Vcli, repow)
 config['RCCG_status'] = rc_check
 config['CLI_status'] = cli_check
 
+if rc_check or cli_check == True:
+    args = [rc_check, cli_check, 3]
+    subprocess.run(["python3", "updater.py"] + args)
 
 print(rc_check)
 print(cli_check)
