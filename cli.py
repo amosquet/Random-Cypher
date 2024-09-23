@@ -4,6 +4,7 @@ import yaml
 import tkinter as tk
 from tkinter import filedialog
 import subprocess
+import sys
 
 #fuck comments
 
@@ -12,23 +13,33 @@ def load_config(file_path):
     with open(file_path, 'r') as file:
         return yaml.safe_load(file)
 
+#grab variables from the config file
 config = load_config('config.yaml')
 repow = config['owner']+'/'+config['repo']
 Vrccg = config['RCCG']
 Vcli = config ['CLI']
 
+#check if RCCG and cli are up-to-date
 rc_check = updater.check(Vrccg, repow) #false = latest version
 cli_check = updater.check(Vcli, repow)
 
-config['RCCG_status'] = rc_check
-config['CLI_status'] = cli_check
+# config['RCCG_status'] = rc_check
+# config['CLI_status'] = cli_check
 
-if rc_check or cli_check == True:
-    args = [rc_check, cli_check, 3]
-    subprocess.run(["python3", "updater.py"] + args)
+#force to string because it doesn't like bools for some reason
+rc_check = str(rc_check)
+cli_check = str(cli_check)
 
+#just for debugging
 print(rc_check)
 print(cli_check)
+
+#if the cli or RCCG is out-of-date, call the updater script
+if rc_check or cli_check == True:
+    args = [rc_check, cli_check, "False"] #status arguments, "False" is a place holder for the gui since we don't check for its version here.
+    subprocess.run(["python", "updater.py"] + args) #run the updater script
+    sys.exit() #exit the program
+
 
 # with open('config.yaml', 'w') as file:
 #     yaml.safe_dump(config, file)

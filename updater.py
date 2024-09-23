@@ -5,6 +5,7 @@ import subprocess
 import os
 import shutil
 import yaml
+import sys
 
 #get the current directory of the program
 def directory():
@@ -56,32 +57,35 @@ def load_config(file_path):
             return yaml.safe_load(file)
 
 def main(args):
-    load_config('config.yaml')
+
+    config = load_config('config.yaml')
     repow = config['owner']+'/'+config['repo']
     ufolder = config['update_folder']
 
     rc_check = args[0]
     cli_check = args[1]
-    gui_check = args[3]
+    gui_check = args[2]
     f1 = 'RCCG.py'
     f2 = 'cli.py'
     f3 = 'gui.py'
 
-    creat_dir(ufolder)
+    create_dir(ufolder)
     clone(repow, ufolder)
 
-    if rc_check == True:
+    if rc_check == 'True':
         print("Updating "+f1)
         cleanup(f1, ufolder)
-    if clu_check == True:
+    if cli_check == 'True':
         print("Updating "+f2)
-        cleanup(f1, ufolder)
-    if gui_check == True:
+        cleanup(f2, ufolder)
+    if gui_check == 'True':
         print("Updating "+f3)
         cleanup(f3, ufolder)
 
-    shutil.rmtree(ufolder, ingore_error=True)
-    subprocess.run('python3', 'cli.py')
+    shutil.rmtree(ufolder, ignore_errors=True) #delete the temporary directory
+    print('Update complete') #print update complete
+    subprocess.run(['python', 'cli.py']) #restart the program, change to python3 if needed
+    sys.exit() #exit the program
 
 if __name__== "__main__":
-    man(sys.argv[1:])
+    main(sys.argv[1:])
