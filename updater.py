@@ -52,40 +52,40 @@ def cleanup(file, update_folder):
     #run executable file
    # os.system(file) #for executable files
 
-def load_config(file_path):
-        with open(file_path, 'r') as file:
-            return yaml.safe_load(file)
+# def load_config(file_path):
+#         with open(file_path, 'r') as file:
+#             return yaml.safe_load(file)
 
-def main(args):
+# def main(args):
 
-    config = load_config('config.yaml')
-    repow = config['owner']+'/'+config['repo']
-    ufolder = config['update_folder']
+#     config = load_config('config.yaml')
+#     repow = config['owner']+'/'+config['repo']
+#     ufolder = config['update_folder']
 
-    rc_check = args[0]
-    cli_check = args[1]
-    gui_check = args[2]
-    f1 = 'RCCG.py'
-    f2 = 'cli.py'
-    f3 = 'gui.py'
+#     rc_check = args[0]
+#     cli_check = args[1]
+#     gui_check = args[2]
+#     f1 = 'RCCG.py'
+#     f2 = 'cli.py'
+#     f3 = 'gui.py'
 
-    create_dir(ufolder)
-    clone(repow, ufolder)
+#     create_dir(ufolder)
+#     clone(repow, ufolder)
 
-    if rc_check == 'True':
-        print("Updating "+f1)
-        cleanup(f1, ufolder)
-    if cli_check == 'True':
-        print("Updating "+f2)
-        cleanup(f2, ufolder)
-    if gui_check == 'True':
-        print("Updating "+f3)
-        cleanup(f3, ufolder)
+#     if rc_check == 'True':
+#         print("Updating "+f1)
+#         cleanup(f1, ufolder)
+#     if cli_check == 'True':
+#         print("Updating "+f2)
+#         cleanup(f2, ufolder)
+#     if gui_check == 'True':
+#         print("Updating "+f3)
+#         cleanup(f3, ufolder)
 
-    shutil.rmtree(ufolder, ignore_errors=True) #delete the temporary directory
-    print('Update complete') #print update complete
-    subprocess.run(['python', 'cli.py']) #restart the program, change to python3 if needed
-    sys.exit() #exit the program
+#     shutil.rmtree(ufolder, ignore_errors=True) #delete the temporary directory
+#     print('Update complete') #print update complete
+#     subprocess.run(['python', 'cli.py']) #restart the program, change to python3 if needed
+#     sys.exit() #exit the program
 
-if __name__== "__main__":
-    main(sys.argv[1:])
+# if __name__== "__main__":
+#     main(sys.argv[1:])

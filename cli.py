@@ -5,6 +5,7 @@ import tkinter as tk
 from tkinter import filedialog
 import subprocess
 import sys
+import updater as up
 
 
 #import owner, repo, RCCG, and CLI from config.yaml
@@ -18,8 +19,7 @@ repow = config['owner']+'/'+config['repo']
 Vrccg = config['RCCG']
 Vcli = config ['CLI']
 file = config['update_folder']
-
-
+ufolder = file
 
 #check if RCCG and cli are up-to-date
 rc_check = updater.check(Vrccg, repow) #false = latest version
@@ -29,18 +29,37 @@ cli_check = updater.check(Vcli, repow)
 # config['CLI_status'] = cli_check
 
 #force to string because it doesn't like bools for some reason
-rc_check = str(rc_check)
-cli_check = str(cli_check)
+# rc_check = str(rc_check)
+# cli_check = str(cli_check)
 
-#just for debugging
-print(rc_check)
-print(cli_check)
+# #just for debugging
+# print(rc_check)
+# print(cli_check)
 
-#if the cli or RCCG is out-of-date, call the updater script
+# #if the cli or RCCG is out-of-date, call the updater script
 # if rc_check or cli_check == True:
 #     args = [rc_check, cli_check, "False"] #status arguments, "False" is a place holder for the gui since we don't check for its version here.
 #     subprocess.run(["python", "updater.py"] + args) #run the updater script
 #     sys.exit() #exit the program
+
+if rc_check or cli_check == True:
+
+    f1 = 'RCCG.py'
+    f2 = 'cli.py'
+
+    # ufolder = config['update_folder']
+    up.create_dir(ufolder)
+    up.clone(repow, ufolder)
+
+    if rc_check == True:
+        print("Updating "+f1)
+        up.cleanup(f1, ufolder)
+    if cli_check == True:
+        print("Updating "+f2)
+        up.cleanup(f2, ufolder)
+
+    subprocess.run(['python', 'cli.py'])
+    sys.exit() #exit the program
 
 
 # with open('config.yaml', 'w') as file:
