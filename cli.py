@@ -17,9 +17,9 @@ config = load_config('config.yaml')
 repow = config['owner']+'/'+config['repo']
 Vrccg = config['RCCG']
 Vcli = config ['CLI']
-file = config['updater_file']
+file = config['update_folder']
 
-shutil.rmtree(file, ignore_erros = True)
+
 
 #check if RCCG and cli are up-to-date
 rc_check = updater.check(Vrccg, repow) #false = latest version
@@ -37,10 +37,10 @@ print(rc_check)
 print(cli_check)
 
 #if the cli or RCCG is out-of-date, call the updater script
-if rc_check or cli_check == True:
-    args = [rc_check, cli_check, "False"] #status arguments, "False" is a place holder for the gui since we don't check for its version here.
-    subprocess.run(["python", "updater.py"] + args) #run the updater script
-    sys.exit() #exit the program
+# if rc_check or cli_check == True:
+#     args = [rc_check, cli_check, "False"] #status arguments, "False" is a place holder for the gui since we don't check for its version here.
+#     subprocess.run(["python", "updater.py"] + args) #run the updater script
+#     sys.exit() #exit the program
 
 
 # with open('config.yaml', 'w') as file:
