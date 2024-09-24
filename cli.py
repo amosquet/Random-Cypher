@@ -6,7 +6,6 @@ from tkinter import filedialog
 import subprocess
 import sys
 
-#fuck comments
 
 #import owner, repo, RCCG, and CLI from config.yaml
 def load_config(file_path):
@@ -18,6 +17,9 @@ config = load_config('config.yaml')
 repow = config['owner']+'/'+config['repo']
 Vrccg = config['RCCG']
 Vcli = config ['CLI']
+file = config['updater_file']
+
+shutil.rmtree(file, ignore_erros = True)
 
 #check if RCCG and cli are up-to-date
 rc_check = updater.check(Vrccg, repow) #false = latest version
